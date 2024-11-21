@@ -68,8 +68,8 @@ public class ShapeCollectorTestSuite {
             Shape result = collector.getFigure(0);
 
             //Then
-            Assertions.assertEquals(circle.getShapeName(), result.getShapeName());
-            Assertions.assertEquals(circle.getField(), result.getField());
+            Assertions.assertEquals("Circle", result.getShapeName());
+            Assertions.assertEquals(78.53981633974483, result.getField());
 
         }
 
