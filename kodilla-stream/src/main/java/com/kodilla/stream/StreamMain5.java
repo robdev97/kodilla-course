@@ -12,7 +12,7 @@ public class StreamMain5 {
     public static void main(String[] args) {
         BookDirectory theBookDirectory = new BookDirectory();
 
-        String theResultStringOfBooks = theBookDirectory .getList().stream()
+        String theResultStringOfBooks = theBookDirectory.getList().stream()
                 .filter(book -> book.getYearOfPublication() > 2005)
                 .map(Book::toString)
                 .collect(Collectors.joining(",\n", "<<", ">>"));

@@ -1,5 +1,8 @@
 package com.kodilla.stream.book;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Book {
 
     private final String title;
@@ -30,6 +33,7 @@ public class Book {
     public String getSignature() {
         return signature;
     }
+
 
     @Override
     public String toString() {
