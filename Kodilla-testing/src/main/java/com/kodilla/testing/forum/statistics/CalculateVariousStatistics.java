@@ -2,7 +2,7 @@ package com.kodilla.testing.forum.statistics;
 
 public class CalculateVariousStatistics {
 
-    private Statistics statistics;
+    private final Statistics statistics;
 
     public CalculateVariousStatistics(Statistics statistics) {
         this.statistics = statistics;
@@ -14,9 +14,6 @@ public class CalculateVariousStatistics {
     private double averageCommentsPerUser;
     private double averageCommentsPerPost;
 
-    public CalculateVariousStatistics() {
-
-    }
 
     public int getUsersCount() {
         return usersCount;
@@ -53,7 +50,7 @@ public class CalculateVariousStatistics {
 
 
 
-    void calculateAdvStatistics(Statistics statistics) {
+    void calculateAdvStatistics() {
 
         usersCount = statistics.userNames() != null ? statistics.userNames().size() : 0;
         postsCount = statistics.postsCount();

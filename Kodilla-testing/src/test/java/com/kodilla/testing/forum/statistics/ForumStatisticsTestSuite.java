@@ -20,13 +20,9 @@ public class ForumStatisticsTestSuite {
 
     @Mock
     Statistics statisticsMock = mock(Statistics.class);
-    CalculateVariousStatistics calculateVariousStatistics = new CalculateVariousStatistics(statisticsMock);
 
-    @BeforeEach
-    void testDataPreparation() {
 
-        MockitoAnnotations.openMocks(this);
-    }
+
         List<String> generateUsersList(int usersCount) {
             List<String> usersList = new ArrayList<>();
             for (int i = 0; i < usersCount; i++) {
@@ -44,7 +40,8 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(5);
 
         //When
-        calculateVariousStatistics.calculateAdvStatistics(statisticsMock);
+        CalculateVariousStatistics calculateVariousStatistics = new CalculateVariousStatistics(statisticsMock);
+        calculateVariousStatistics.calculateAdvStatistics();
 
         //Then
         assertEquals(10, calculateVariousStatistics.getUsersCount());
@@ -64,7 +61,8 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(500);
 
         //When
-        calculateVariousStatistics.calculateAdvStatistics(statisticsMock);
+        CalculateVariousStatistics calculateVariousStatistics = new CalculateVariousStatistics(statisticsMock);
+        calculateVariousStatistics.calculateAdvStatistics();
 
         //Then
         assertEquals(100, calculateVariousStatistics.getUsersCount());
@@ -84,7 +82,8 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(0);
 
         //When
-        calculateVariousStatistics.calculateAdvStatistics(statisticsMock);
+        CalculateVariousStatistics calculateVariousStatistics = new CalculateVariousStatistics(statisticsMock);
+        calculateVariousStatistics.calculateAdvStatistics();
 
         //Then
         assertEquals(10, calculateVariousStatistics.getUsersCount());
@@ -103,7 +102,8 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(50);
 
         //When
-        calculateVariousStatistics.calculateAdvStatistics(statisticsMock);
+        CalculateVariousStatistics calculateVariousStatistics = new CalculateVariousStatistics(statisticsMock);
+        calculateVariousStatistics.calculateAdvStatistics();
 
         //Then
         assertEquals(10, calculateVariousStatistics.getUsersCount());
@@ -122,7 +122,8 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(25);
 
         //When
-        calculateVariousStatistics.calculateAdvStatistics(statisticsMock);
+        CalculateVariousStatistics calculateVariousStatistics = new CalculateVariousStatistics(statisticsMock);
+        calculateVariousStatistics.calculateAdvStatistics();
 
         //Then
         assertEquals(0, calculateVariousStatistics.getUsersCount());
@@ -142,7 +143,8 @@ public class ForumStatisticsTestSuite {
         when(statisticsMock.commentsCount()).thenReturn(5000);
 
         //When
-        calculateVariousStatistics.calculateAdvStatistics(statisticsMock);
+        CalculateVariousStatistics calculateVariousStatistics = new CalculateVariousStatistics(statisticsMock);
+        calculateVariousStatistics.calculateAdvStatistics();
 
         //Then
         assertEquals(100, calculateVariousStatistics.getUsersCount());
