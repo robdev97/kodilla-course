@@ -36,10 +36,6 @@ public class ForumStatisticsTestSuite {
         }
 
 
-
-
-
-
     @Test
     void testZeroPosts() {
         //Given

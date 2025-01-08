@@ -1,7 +1,5 @@
 package com.kodilla.testing.forum.statistics;
 
-import java.util.Objects;
-
 public class CalculateVariousStatistics {
 
     private Statistics statistics;
@@ -16,15 +14,8 @@ public class CalculateVariousStatistics {
     private double averageCommentsPerUser;
     private double averageCommentsPerPost;
 
-    public CalculateVariousStatistics(int usersCount, int postsCount, double averagePostsPerUser,
-                                      int commentsCount, double averageCommentsPerUser,
-                                      double averageCommentsPerPost) {
-        this.usersCount = usersCount;
-        this.postsCount = postsCount;
-        this.averagePostsPerUser = averagePostsPerUser;
-        this.commentsCount = commentsCount;
-        this.averageCommentsPerUser = averageCommentsPerUser;
-        this.averageCommentsPerPost = averageCommentsPerPost;
+    public CalculateVariousStatistics() {
+
     }
 
     public int getUsersCount() {
