@@ -1,0 +1,24 @@
+SELECT
+    i.ID AS Issue_ID,
+    i.SUMMARY AS Issue_Summary,
+    i.DESCRIPTION AS Issue_Description,
+    il.NAME AS List_Name
+FROM ISSUES i
+JOIN ISSUESLISTS il ON i.ISSUESLIST_ID = il.ID;
+
+SELECT
+    i.ID AS Issue_ID,
+    i.SUMMARY AS Issue_Summary,
+    i.DESCRIPTION AS Issue_Description,
+    u.FIRSTNAME AS Assigned_User_Firstname,
+    u.LASTNAME AS Assigned_User_Lastname
+FROM ISSUES i
+LEFT JOIN USERS u ON i.USER_ID_ASSIGNEDTO = u.ID;
+
+SELECT u.FIRSTNAME AS User_Firstname,
+       u.LASTNAME AS User_Lastname,
+       COUNT(i.ID) AS Assigned_Issue_Count
+FROM USERS u
+LEFT JOIN ISSUES i ON u.ID = i.USER_ID_ASSIGNEDTO
+GROUP BY u.ID, u.FIRSTNAME, u.LASTNAME
+HAVING COUNT(i.ID) > 0;
