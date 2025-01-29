@@ -3,7 +3,7 @@ package com.kodilla.hibernate.tasklist;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.List;
+
 import java.util.Objects;
 
 
