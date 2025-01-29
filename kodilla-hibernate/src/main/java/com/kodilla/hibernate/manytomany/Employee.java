@@ -7,20 +7,25 @@ import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedQuery(
+        name = "Employee.findByLastName",
+        query = "FROM Employee WHERE lastname = :LASTNAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
 
     private int id;
-    private String fisrtname;
+    private String firstname;
     private String lastname;
     private List<Company> companies = new ArrayList<>();
 
     public Employee() {
     }
 
-    public Employee(String fisrtname, String lastname) {
-        this.fisrtname = fisrtname;
+    public Employee(String firstname, String lastname) {
+        this.firstname = firstname;
         this.lastname = lastname;
     }
 
@@ -35,7 +40,7 @@ public class Employee {
     @NotNull
     @Column(name = "FIRSTNAME")
     public String getFirstname() {
-        return fisrtname;
+        return firstname;
     }
 
     @NotNull
@@ -48,8 +53,8 @@ public class Employee {
         this.id = id;
     }
 
-    public void setFirstname(String fisrtname) {
-        this.fisrtname = fisrtname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public void setLastname(String lastname) {

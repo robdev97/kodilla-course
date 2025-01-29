@@ -7,6 +7,12 @@ import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedNativeQuery(
+        name = "Company.findByFirstThreeLetters",
+        query = "SELECT * FROM COMPANIES WHERE LEFT(COMPANY_NAME, 3) = :PREFIX",
+        resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -35,7 +41,7 @@ public class Company {
     }
 
     @NotNull
-    @Column(name = "COMPANY_NAME)")
+    @Column(name = "COMPANY_NAME", nullable = false)
     public String getName() {
         return name;
     }

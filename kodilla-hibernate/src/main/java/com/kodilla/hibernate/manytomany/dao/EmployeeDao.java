@@ -1,6 +1,6 @@
 package com.kodilla.hibernate.manytomany.dao;
 
-import com.kodilla.hibernate.manytomany.Company;
+import com.kodilla.hibernate.manytomany.Employee;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -11,12 +11,9 @@ import java.util.List;
 
 @Transactional
 @Repository
-public interface CompanyDao extends CrudRepository<Company, Integer> {
-
+public interface EmployeeDao extends CrudRepository<Employee, Integer> {
     @Query(
-            nativeQuery = true,
-            value = "SELECT * FROM COMPANIES WHERE LEFT(COMPANY_NAME, 3) = :PREFIX"
+            name = "Employee.findByLastName"
     )
-    List<Company> findByFirstThreeLetters(@Param("PREFIX") String prefix);
-
+    List<Employee> findByLastName(@Param("LASTNAME") String lastname);
 }
