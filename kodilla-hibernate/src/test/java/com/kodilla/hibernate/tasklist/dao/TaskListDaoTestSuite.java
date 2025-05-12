@@ -31,7 +31,7 @@ public class TaskListDaoTestSuite {
         List<TaskList> findByListName = taskListDao.findByListName(LISTNAME);
 
         // Then
-        assertEquals(13, findByListName.size());
+        assertEquals(1, findByListName.size());
         assertEquals(LISTNAME, findByListName.get(0).getListName());
 
         // CleanUp

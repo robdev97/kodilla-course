@@ -2,7 +2,8 @@ package com.kodilla.hibernate.manytomany;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import org.antlr.v4.runtime.misc.NotNull;
+
 
 import java.util.ArrayList;
 import java.util.List;
