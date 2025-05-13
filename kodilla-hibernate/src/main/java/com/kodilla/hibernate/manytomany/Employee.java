@@ -8,11 +8,16 @@ import org.antlr.v4.runtime.misc.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@NamedQuery(
-        name = "Employee.findByLastName",
-        query = "FROM Employee WHERE lastname = :LASTNAME"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.findByLastName",
+                query = "FROM Employee WHERE lastname = :LASTNAME"
+        ),
+        @NamedQuery(
+                name = "Employee.findByLastNameFragment",
+                query = "FROM Employee WHERE lastname LIKE :LASTNAME_FRAGMENT"
+        )
+})
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {

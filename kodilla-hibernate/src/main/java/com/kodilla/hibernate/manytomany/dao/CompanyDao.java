@@ -19,4 +19,7 @@ public interface CompanyDao extends CrudRepository<Company, Integer> {
     )
     List<Company> findByFirstThreeLetters(@Param("PREFIX") String prefix);
 
+    @Query(name = "Company.findByNameFragment")
+    List<Company> findByNameFragment(@Param("NAME_FRAGMENT") String nameFragment);
+
 }
