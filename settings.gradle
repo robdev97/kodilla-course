@@ -10,3 +10,6 @@ include 'kodilla-spring-web'
 include 'kodilla-jdbc'
 include 'kodilla-hibernate'
 include 'kodilla-exam-repeat'
+include 'kodilla-testing2'
+include 'kodilla-testing2'
+

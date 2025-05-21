@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.kodilla.testing2'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.12.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.2")
+    implementation("org.seleniumhq.selenium:selenium-java:4.32.0")
+    implementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
+}
+
+test {
+    useJUnitPlatform()
+}
