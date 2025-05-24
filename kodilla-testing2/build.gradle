@@ -10,12 +10,18 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.12.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.12.2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.2")
     implementation("org.seleniumhq.selenium:selenium-java:4.32.0")
     implementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
 }
 
 test {
     useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showStandardStreams = true
+    }
 }
