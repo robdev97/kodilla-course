@@ -150,7 +150,7 @@ public class CrudAppTestSuite {
     private void deleteTestTaskFromCrudApp(String taskName) throws InterruptedException {
         driver.navigate().refresh();
 
-        while (!driver.findElement(By.xpath("//select[1]")).isDisplayed());
+        Thread.sleep(5000);
 
         driver.findElements(
                         By.xpath("//form[@class=\"datatable__row\"]")).stream()
