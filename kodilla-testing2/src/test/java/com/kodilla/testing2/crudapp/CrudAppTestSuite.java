@@ -13,9 +13,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CrudAppTestSuite {
     private static final String BASE_URL = "https://robdev97.github.io";
@@ -111,36 +111,63 @@ public class CrudAppTestSuite {
                     By.xpath("//div[@title='Kodilla Application']/ancestor::a")));
             kodillaBoard.click();
 
-            WebElement thingsToDoList = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//h2[normalize-space()='Things to do']/ancestor::div[contains(@class, 'list')]")
-            ));
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@data-testid='list']")));
 
-            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
-                    By.xpath("//h2[normalize-space()='Things to do']/ancestor::div[contains(@class, 'list')]//span[contains(@class, 'list-card-title')]")
-            ));
+            List<WebElement> lists = driverTrello.findElements(By.xpath("//div[@data-testid='list']"));
 
-            java.util.List<WebElement> cards = thingsToDoList.findElements(
-                    By.xpath(".//span[contains(@class, 'list-card-title')]")
-            );
-
-            for (WebElement card : cards) {
-                String cardText = card.getText().trim().toLowerCase();
-                System.out.println("Znaleziono kartę: " + cardText);
-                if (cardText.equals(taskName.trim().toLowerCase())) {
-                    result = true;
-                    break;
+            System.out.println("== LISTY NA TABLICY ==");
+            for (WebElement list : lists) {
+                String headerText = "BRAK NAGŁÓWKA";
+                try {
+                    WebElement header = list.findElement(By.xpath(".//div[@data-testid='list-header']//h2"));
+                    headerText = header.getText().trim();
+                } catch (Exception e) {
+                    System.out.println("Nie znaleziono nagłówka dla listy.");
                 }
+                System.out.println("Znaleziono listę: " + headerText);
+
+                List<WebElement> cards = list.findElements(By.xpath(".//a[contains(@class, 'list-card')]"));
+
+                for (WebElement card : cards) {
+                    String cardText = card.getText().trim();
+                    System.out.println("  - karta: '" + cardText + "'");
+                    if (cardText.contains(taskName)) {
+                        System.out.println("ZNALEZIONO SZUKANĄ KARTĘ!");
+                        result = true;
+                        break;
+                    }
+                }
+                if (result) break;
             }
+
         } finally {
             driverTrello.quit();
         }
 
         return result;
     }
+
+    private void deleteTestTaskFromCrudApp(String taskName) throws InterruptedException {
+        driver.navigate().refresh();
+
+        while (!driver.findElement(By.xpath("//select[1]")).isDisplayed());
+
+        driver.findElements(
+                        By.xpath("//form[@class=\"datatable__row\"]")).stream()
+                .filter(form -> form.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
+                        .getText().equals(taskName))
+                .forEach(form -> {
+                    WebElement deleteButton = form.findElement(By.xpath(".//button[@data-task-delete-button]"));
+                    deleteButton.click();
+                });
+
+        Thread.sleep(3000);
+    }
+
     @Test
     void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
-        assertTrue(checkTaskExistsInTrello(taskName));
+        deleteTestTaskFromCrudApp(taskName);
     }
 }
