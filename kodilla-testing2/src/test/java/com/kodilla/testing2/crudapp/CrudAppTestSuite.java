@@ -16,6 +16,8 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class CrudAppTestSuite {
     private static final String BASE_URL = "https://robdev97.github.io";
@@ -126,7 +128,7 @@ public class CrudAppTestSuite {
                 }
                 System.out.println("Znaleziono listę: " + headerText);
 
-                List<WebElement> cards = list.findElements(By.xpath(".//a[contains(@class, 'list-card')]"));
+                List<WebElement> cards = list.findElements(By.xpath(".//a[contains(@class, 'NdQKKfeqJDDdX3')]"));
 
                 for (WebElement card : cards) {
                     String cardText = card.getText().trim();
@@ -168,6 +170,7 @@ public class CrudAppTestSuite {
     void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
+        assertTrue(checkTaskExistsInTrello(taskName));
         deleteTestTaskFromCrudApp(taskName);
     }
 }
